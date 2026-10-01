@@ -23,6 +23,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.milliseconds
 
 interface GitHubRepository {
     suspend fun createFile(
@@ -72,7 +73,7 @@ class FakeGitHubRepository : GitHubRepository {
         token: String,
         request: CreateFileRequest
     ): Result<CreateFileResponse> {
-        delay(600) // Simulate network latency
+        delay(600.milliseconds) // Simulate network latency
 
         val generatedSha = UUID.randomUUID().toString().replace("-", "") + "00000000"
         val sha40 = generatedSha.take(40)
@@ -138,7 +139,7 @@ class FakeGitHubRepository : GitHubRepository {
         username: String,
         token: String?
     ): Result<GitHubUserResponse> {
-        delay(200)
+        delay(200.milliseconds)
         try {
             Log.i("ZeThread", "[ZeThread] Fake GitHub getUser('$username') -> 404 Not Found")
         } catch (_: Throwable) {

@@ -1,6 +1,5 @@
 package de.berlindroid.zethread.ui.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -58,7 +57,6 @@ import de.berlindroid.zethread.ui.theme.TerminalGreen
 import de.berlindroid.zethread.ui.theme.TerminalSurfaceVariant
 import de.berlindroid.zethread.ui.theme.TextGlowing
 import de.berlindroid.zethread.ui.theme.TextMuted
-import de.berlindroid.zethread.ui.theme.TextPrimary
 import de.berlindroid.zethread.ui.theme.TextSecondary
 
 @OptIn(ExperimentalMaterial3Api::class)

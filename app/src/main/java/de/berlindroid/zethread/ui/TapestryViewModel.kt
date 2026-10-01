@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.time.Duration.Companion.milliseconds
 
 sealed interface UserLookupState {
     data object Idle : UserLookupState
@@ -125,7 +126,7 @@ class TapestryViewModel @JvmOverloads constructor(
         }
 
         lookupJob = viewModelScope.launch {
-            delay(400) // Debounce rapid keystrokes
+            delay(400.milliseconds) // Debounce rapid keystrokes
             _userLookupState.value = UserLookupState.Searching
             val config = appConfig.value
             val repository: GitHubRepository = if (config.useMockRepository) fakeRepository else realRepository
@@ -163,12 +164,6 @@ class TapestryViewModel @JvmOverloads constructor(
         _userLookupState.value = UserLookupState.Idle
         lookupJob?.cancel()
         _uiState.value = TapestryUiState.Form(bitmap = bitmap)
-    }
-
-    fun onBackToCamera() {
-        _userLookupState.value = UserLookupState.Idle
-        lookupJob?.cancel()
-        _uiState.value = TapestryUiState.Camera
     }
 
     fun resetToCamera() {
@@ -232,13 +227,13 @@ class TapestryViewModel @JvmOverloads constructor(
             }
 
             log("> [1/4] Optimizing and cropping patch image...")
-            delay(100)
+            delay(100.milliseconds)
 
             log("> [2/4] Encoding bitmap to Base64 JPEG...")
             val base64Image = withContext(Dispatchers.Default) {
                 ImageUtils.bitmapToBase64Jpeg(bitmap, quality = 90)
             }
-            delay(100)
+            delay(100.milliseconds)
 
             val rawHandle = handle.trim().ifEmpty { "anonymous_agent" }
             val cleanHandle = rawHandle.removePrefix("@")
@@ -246,7 +241,7 @@ class TapestryViewModel @JvmOverloads constructor(
                 "${cleanHandle.lowercase(Locale.ROOT).replace(Regex("[^a-z0-9]"), "")}@users.noreply.github.com"
             }
 
-            val authorIdent = CommitAuthorIdent(
+            val authorIndent = CommitAuthorIdent(
                 name = rawHandle,
                 email = authorEmail
             )
@@ -278,8 +273,8 @@ class TapestryViewModel @JvmOverloads constructor(
             val imageRequest = CreateFileRequest(
                 message = imageCommitMsg,
                 content = base64Image,
-                author = authorIdent,
-                committer = authorIdent,
+                author = authorIndent,
+                committer = authorIndent,
                 branch = config.branch.ifBlank { "main" }
             )
 
@@ -307,7 +302,7 @@ class TapestryViewModel @JvmOverloads constructor(
             val imageSha = imageResponse.commit.sha
             val shortImageSha = imageSha.take(7)
             log("> Image committed (SHA: $shortImageSha). Generating metadata @ ($x, $y)...")
-            delay(200)
+            delay(200.milliseconds)
 
             // Call 2: Commit metadata.json
             val isoDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).apply {
@@ -339,8 +334,8 @@ class TapestryViewModel @JvmOverloads constructor(
             val metadataRequest = CreateFileRequest(
                 message = metadataCommitMsg,
                 content = base64Metadata,
-                author = authorIdent,
-                committer = authorIdent,
+                author = authorIndent,
+                committer = authorIndent,
                 branch = config.branch.ifBlank { "main" }
             )
 
@@ -366,7 +361,7 @@ class TapestryViewModel @JvmOverloads constructor(
                     } else {
                         log("> Patch & metadata committed! SHA: $finalSha")
                     }
-                    delay(300)
+                    delay(300.milliseconds)
                     _uiState.value = TapestryUiState.Success(
                         commitHash = finalSha,
                         htmlUrl = metaResponse.commit.htmlUrl ?: imageResponse.commit.htmlUrl

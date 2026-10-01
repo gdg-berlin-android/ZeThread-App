@@ -44,7 +44,8 @@ data class ContentInfo(
 @Serializable
 data class GitHubErrorResponse(
     val message: String? = null,
-    val documentation_url: String? = null
+    @SerialName("documentation_url")
+    val documentationUrl: String? = null
 )
 
 @Serializable

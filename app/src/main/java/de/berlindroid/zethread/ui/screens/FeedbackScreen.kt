@@ -2,7 +2,6 @@ package de.berlindroid.zethread.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,20 +42,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.berlindroid.zethread.ui.TapestryUiState
-import de.berlindroid.zethread.ui.theme.BorderSubtle
 import de.berlindroid.zethread.ui.theme.CodeMonospace
 import de.berlindroid.zethread.ui.theme.TerminalAmber
 import de.berlindroid.zethread.ui.theme.TerminalBackground
 import de.berlindroid.zethread.ui.theme.TerminalCyan
 import de.berlindroid.zethread.ui.theme.TerminalGreen
 import de.berlindroid.zethread.ui.theme.TerminalRed
-import de.berlindroid.zethread.ui.theme.TerminalSurface
 import de.berlindroid.zethread.ui.theme.TerminalSurfaceVariant
 import de.berlindroid.zethread.ui.theme.TextGlowing
 import de.berlindroid.zethread.ui.theme.TextMuted
-import de.berlindroid.zethread.ui.theme.TextPrimary
 import de.berlindroid.zethread.ui.theme.TextSecondary
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun FeedbackScreen(
@@ -164,7 +161,7 @@ private fun SuccessView(
 
     LaunchedEffect(Unit) {
         while (countdown > 0) {
-            delay(1000)
+            delay(1000.milliseconds)
             countdown--
         }
         onNext()

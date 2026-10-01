@@ -13,10 +13,8 @@ import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -47,7 +45,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -64,23 +61,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import de.berlindroid.zethread.ui.components.CrochetPatchFrameOverlay
-import de.berlindroid.zethread.ui.theme.TerminalAmber
 import de.berlindroid.zethread.ui.theme.TerminalBackground
-import de.berlindroid.zethread.ui.theme.TerminalCyan
 import de.berlindroid.zethread.ui.theme.TerminalGreen
-import de.berlindroid.zethread.ui.theme.TerminalSurface
 import de.berlindroid.zethread.ui.theme.TextGlowing
-import de.berlindroid.zethread.ui.theme.TextMuted
 import de.berlindroid.zethread.ui.theme.TextSecondary
 import de.berlindroid.zethread.util.ImageUtils
 import java.util.concurrent.Executors
@@ -219,7 +210,7 @@ private fun LiveCameraView(
                         cameraProviderFuture.addListener({
                             val cameraProvider = cameraProviderFuture.get()
                             val preview = Preview.Builder().build().also {
-                                it.setSurfaceProvider(previewView.surfaceProvider)
+                                it.surfaceProvider = previewView.surfaceProvider
                             }
 
                             val capture = ImageCapture.Builder()

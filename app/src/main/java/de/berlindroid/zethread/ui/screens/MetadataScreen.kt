@@ -1,12 +1,8 @@
 package de.berlindroid.zethread.ui.screens
 
 import android.graphics.Bitmap
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,12 +23,11 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.EditNote
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -43,7 +38,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -54,7 +48,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import de.berlindroid.zethread.ui.UserLookupState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
@@ -64,16 +57,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import de.berlindroid.zethread.ui.UserLookupState
 import de.berlindroid.zethread.ui.theme.BorderSubtle
 import de.berlindroid.zethread.ui.theme.CodeMonospace
 import de.berlindroid.zethread.ui.theme.TerminalBackground
 import de.berlindroid.zethread.ui.theme.TerminalCyan
 import de.berlindroid.zethread.ui.theme.TerminalGreen
 import de.berlindroid.zethread.ui.theme.TerminalRed
-import de.berlindroid.zethread.ui.theme.TerminalSurface
-import de.berlindroid.zethread.ui.theme.TerminalSurfaceVariant
 import de.berlindroid.zethread.ui.theme.TextGlowing
 import de.berlindroid.zethread.ui.theme.TextMuted
 import de.berlindroid.zethread.ui.theme.TextPrimary
