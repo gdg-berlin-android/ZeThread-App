@@ -13,12 +13,12 @@ import kotlinx.coroutines.flow.map
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "zethread_settings")
 
 data class AppConfig(
-    val repoOwner: String = "louis993546",
-    val repoName: String = "ZeThread-testing",
+    val repoOwner: String = "gdg-berlin-android",
+    val repoName: String = "ZeThread-Contributions",
     val branch: String = "main",
     val pathPrefix: String = "patches",
     val githubToken: String = "",
-    val useMockRepository: Boolean = true
+    val useMockRepository: Boolean = false
 )
 
 class AppSettingsDataStore(private val context: Context) {
